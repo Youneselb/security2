@@ -39,9 +39,9 @@ function apiFacade() {
     return fetch(URL + "/api/klasser/getall",options).then(handleHttpErrors);
   };
   
-  const fetchCoursePageData = () => {
+  const fetchCommentPageData = () => {
     const options = makeOptions("GET", false); //True add's the token
-    return fetch(URL + "/api/course/getall",options).then(handleHttpErrors);
+    return fetch(URL + "/api/comment/getall",options).then(handleHttpErrors);
   };
 
   const fetchTeacherPageData = () => {
@@ -50,9 +50,9 @@ function apiFacade() {
   };
   
 
-  const postcourse = (course) => {
-    const options = makeOptions("POST", true, course); //True add's the token
-    return fetch(URL + "/api/course/newcourse", options).then(handleHttpErrors);
+  const postcomment = (comment) => {
+    const options = makeOptions("POST", true, comment); //True add's the token
+    return fetch(URL + "/api/comment/newcomment", options).then(handleHttpErrors);
   };
     
   const postklasse = (klasse) => {
@@ -106,9 +106,9 @@ function apiFacade() {
     fetchStarWarsData,
     fetchChuckNorrisData,
     fetchClassPageData,
-    fetchCoursePageData,
+    fetchCommentPageData,
     fetchTeacherPageData,
-    postcourse,
+    postcomment,
     postklasse,
     postteacher
   };

@@ -4,7 +4,7 @@ import WelcomePage from "./welcomePage";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Table from 'react-bootstrap/Table';
 import { Switch, Route, NavLink } from "react-router-dom";
-import AddCourse from "./addcourse";
+import AddComment from "./addcomment";
 import AddKlasse from "./addklasse";
 import AddTeacher from "./addteacher";
 
@@ -33,14 +33,14 @@ function Header({ loggedIn, role }) {
             </NavLink>
       </li>
         <li>
-          <NavLink activeClassName="selected" to="/CoursePage">
-            CoursePage 
+          <NavLink activeClassName="selected" to="/CommentPage">
+            CommentPage 
             </NavLink>
             </li>
             {loggedIn && role =="admin" && (
             <li>
-            <NavLink activeClassName="selected" to="/AddCourse">
-          AddCourse
+            <NavLink activeClassName="selected" to="/AddComment">
+          AddComment
             </NavLink>
             
             <li>
@@ -145,13 +145,13 @@ function ClassPage() {
  }
 }
 
-function CoursePage() {
+function CommentPage() {
   // Const er en form for hook. Den laver en variabel som kan arbejde med resultatet efter rendering. 
    const [fetchData, setFetchData] = useState([]);
   
  
    useEffect(() => {
-     facade.fetchCoursePageData().then((data) => setFetchData(data)); 
+     facade.fetchCommentPageData().then((data) => setFetchData(data)); 
      //Tomt array betyder at den kun renderes én gang, og kun en gang. 
    }, []);
  
@@ -159,9 +159,8 @@ function CoursePage() {
      <Table striped bordered hover>
  <thead>
    <tr>
-     <th>Name of course:</th>
-     <th>Description:</th>
-     <th>Course ID:</th>
+     <th>Comments:</th>
+   
      
    </tr>
    </thead>
@@ -177,9 +176,8 @@ function CoursePage() {
  console.log(data.id) 
    return(
    <tr>
-    <td>{data.courseName}</td>
-    <td>{data.courseDescription}</td> 
-    <td>{data.id}</td>
+    <td>{data.comment}</td>
+  
    </tr>
   )
  })
@@ -301,11 +299,11 @@ function App() {
           <ClassPage/>
         </Route>
 
-        <Route exact path="/CoursePage">
-          <CoursePage />
+        <Route exact path="/CommentPage">
+          <CommentPage />
         </Route>
-        <Route exact path="/AddCourse">
-          <AddCourse/>
+        <Route exact path="/AddComment">
+          <AddComment/>
         </Route>
         <Route exact path="/AddKlasse">
           <AddKlasse/>
